@@ -1,0 +1,11 @@
+az storage account create --name stagingstore4000 --resource-group demogrp1 --location EastUS --sku Standard_LRS 
+
+az storage container create --account-name stagingstore4000 --name demo
+
+az storage blob upload --account-name stagingstore4000 --container-name demo --name sample.txt --file sample.txt
+
+az storage container set-permission --account-name stagingstore4000 --name demo --public-access blob
+
+az storage blob list --account-name stagingstore4000 --container-name demo --output table
+
+az storage blob download --account-name stagingstore4000 --container-name demo --name sample.txt --file sample.txt
